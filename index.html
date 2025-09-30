@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Dearest Mirriam</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            color: #5d3a3a;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            transform: rotate(45deg);
+            opacity: 0.7;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .heart:before, .heart:after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart:after {
+            top: 0;
+            left: -10px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(45deg); }
+            50% { transform: translateY(-20px) rotate(45deg); }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #d3567e;
+        }
+
+        .names {
+            font-size: 1.8rem;
+            color: #b84a6f;
+            margin-bottom: 1rem;
+        }
+
+        .anniversary {
+            font-size: 1.2rem;
+            color: #d3567e;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        .love-notes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .note {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .note:hover {
+            transform: translateY(-5px);
+        }
+
+        .note:before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            color: rgba(211, 86, 126, 0.2);
+        }
+
+        .music-player {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .music-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        button {
+            background: #d3567e;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #b84a6f;
+        }
+
+        footer {
+            margin-top: 2rem;
+            padding: 1rem;
+            color: #5d3a3a;
+            font-style: italic;
+        }
+
+        .special-message {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .special-message:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b6b, #ffafbd);
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .names {
+                font-size: 1.5rem;
+            }
+            
+            .love-notes {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .autoplay-notice {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #5d3a3a;
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-container" id="hearts"></div>
+    
+    <div class="container">
+        <header>
+            <h1>For My Dearest Mirriam</h1>
+            <div class="names">From Michael, With All My Love</div>
+            <p>Every moment with you is a beautiful memory I cherish forever.</p>
+            <div class="anniversary">Since September 19th - The day my life changed forever</div>
+        </header>
+        
+        <div class="special-message">
+            <h2>My Beloved Mirriam,</h2>
+            <p>From the moment we started dating on September 19th, my world has been filled with more joy than I ever thought possible. Your smile brightens my darkest days, your laughter is my favorite melody, and your love is the greatest gift I've ever received.</p>
+            <p>I'm so excited to build our future together - not just our relationship, but also our dreams with MiMi's Bites and Fiero Technologies. With you by my side, I know we can accomplish anything.</p>
+            <p>I promise to cherish you, support you, and love you more with each passing day. You are my everything.</p>
+            <p>Forever yours,<br>Michael</p>
+        </div>
+        
+        <div class="love-notes">
+            <div class="note">
+                <h3>Your Smile</h3>
+                <p>Your smile is my favorite sight in the world. It lights up my entire day.</p>
+            </div>
+            <div class="note">
+                <h3>Your Heart</h3>
+                <p>You have the kindest heart I've ever known. I'm grateful to be loved by you</p>
+            </div>
+            <div class="note">
+                <h3>Our Future</h3>
+                <p>I can't wait to build a beautiful future together - growing our love, MiMi's Bites, and Fiero Technologies into something truly special.</p>
+            </div>
+            <div class="note">
+                <h3>My Promise</h3>
+                <p>I promise to always be there for you, to support you, and to love you unconditionally through all our ventures and adventures.</p>
+            </div>
+            <div class="note">
+                <h3>My Inspiration</h3>
+                <p>You inspire me to be a better person every single day and to continue doing God's work with passion and purpose.</p>
+            </div>
+            <div class="note">
+                <h3>My Home</h3>
+                <p>Wherever you are is where I feel at home. You are my safe place in this world.</p>
+            </div>
+        </div>
+        
+        <div class="music-player">
+            <h2>Our Song</h2>
+            <p>This song reminds me of us and how much I love you.</p>
+            <div class="music-controls">
+                <button id="playBtn">Play</button>
+                <button id="pauseBtn">Pause</button>
+                <button id="stopBtn">Stop</button>
+            </div>
+            <div class="autoplay-notice" id="autoplayNotice">
+                Music should play automatically. If not, please click anywhere on the page to enable it.
+            </div>
+            <audio id="loveSong" loop>
+                <source src="Kunmie-Arike-(TrendyBeatz.com).mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        
+        <footer>
+            <p>Made with ❤️ by Michael for his beautiful Mirriam</p>
+        </footer>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const heartCount = 20;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                
+                // Random position
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                
+                // Random size
+                const size = Math.random() * 20 + 10;
+                
+                // Random animation delay
+                const delay = Math.random() * 5;
+                
+                heart.style.left = `${left}%`;
+                heart.style.top = `${top}%`;
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
+                heart.style.animationDelay = `${delay}s`;
+                
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        // Music controls
+        const loveSong = document.getElementById('loveSong');
+        const playBtn = document.getElementById('playBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const autoplayNotice = document.getElementById('autoplayNotice');
+        
+        playBtn.addEventListener('click', () => {
+            loveSong.play();
+            autoplayNotice.style.display = 'none';
+        });
+        
+        pauseBtn.addEventListener('click', () => {
+            loveSong.pause();
+        });
+        
+        stopBtn.addEventListener('click', () => {
+            loveSong.pause();
+            loveSong.currentTime = 0;
+        });
+        
+        // Initialize the page
+        window.addEventListener('DOMContentLoaded', () => {
+            createHearts();
+            
+            // Try to autoplay immediately
+            const playPromise = loveSong.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // Autoplay started successfully
+                    autoplayNotice.style.display = 'none';
+                }).catch(error => {
+                    // Autoplay was prevented, show notice
+                    console.log("Autoplay prevented. User needs to interact first.");
+                    autoplayNotice.style.display = 'block';
+                    
+                    // Add click event to entire document to enable audio
+                    document.body.addEventListener('click', enableAudio);
+                });
+            }
+        });
+        
+        // Function to enable audio after user interaction
+        function enableAudio() {
+            loveSong.play().then(() => {
+                autoplayNotice.style.display = 'none';
+                // Remove the event listener after first interaction
+                document.body.removeEventListener('click', enableAudio);
+            }).catch(error => {
+                console.log("Still can't play audio");
+            });
+        }
+    </script>
+</body>
+</html>
